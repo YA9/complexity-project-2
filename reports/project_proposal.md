@@ -7,7 +7,8 @@
 ## Abstract
 
 This paper will investigate algorithms that are used to form string art. String art is a technique used to recreate an image by stretching a thread across pins on a canvas. This is usually done with a single thread. The challenge is optimizing the image such that minimal noise and visual artifacts are created while allowing the important features of the image to emerge.
-
+<br>
+<br>
 ![Examples](../images/sample_art.PNG)
 above is an example representing images and their conversions to string art. [[1]](#link1)
 
