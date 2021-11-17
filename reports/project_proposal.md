@@ -8,7 +8,8 @@
 
 This paper will investigate algorithms that are used to form string art. String art is a technique used to recreate an image by stretching a thread across pins on a canvas. This is usually done with a single thread. The challenge is optimizing the image such that minimal noise and visual artifacts are created while allowing the important features of the image to emerge.
 
-<!-- include picture of what string art looks like -->
+![Examples](../images/sample_art.PNG)
+above is an example representing images and their conversions to string art. [[1]](#link1)
 
 There are many ways to optimize the placement of the strings, however, the most common one that will likely be used in this paper is an iterative greedy algorithm. This method starts at a random pin and chooses the darkest path in the image to follow and places a string, then moves to the end of the string.
 
@@ -18,7 +19,7 @@ The approach to recreating the original implementation should be fairly straight
 
 ## Annotated Bibliography
 
-**String art: towards computational fabrication of string images**
+### **String art: towards computational fabrication of string images**
 
 Birsak, Michael; Rist, Florian; Wonka, Peter; Musialski, Przemyslaw
 
@@ -39,3 +40,7 @@ My main concern is that since replication will be the most difficult step, I may
 ## Next Steps
 
 What I can start working on is creating the object that contains the ring of equidistant nodes. Afterwards, I will overlay it on the image, and assign coordinates to each node. This will form the framework on which the rest of the algorithm will run. My challenge after this is converting the pixels along the line between any two nodes into coordinates. Then I will have access to these pixels and will be able to form my own selection method for which path the string will take at each node. Achieving these steps will be my goal for the first week.
+
+## References
+
+<a name="link1">[[1] Birsak, Michael; Rist, Florian; Wonka, Peter; Musialski, Przemyslaw. 22 May 2018. String Art: Towards Computational Fabrication of String Images.](https://repository.kaust.edu.sa/bitstream/10754/656489/1/2018.EG.Birsak.StringArt.pdf)</a>
