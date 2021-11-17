@@ -39,3 +39,4 @@ My main concern is that since replication will be the most difficult step, I may
 ## Next Steps
 
 What I can start working on is creating the object that contains the ring of equidistant nodes. Afterwards, I will overlay it on the image, and assign coordinates to each node. This will form the framework on which the rest of the algorithm will run. My challenge after this is converting the pixels along the line between any two nodes into coordinates. Then I will have access to these pixels and will be able to form my own selection method for which path the string will take at each node. Achieving these steps will be my goal for the first week.
+a
