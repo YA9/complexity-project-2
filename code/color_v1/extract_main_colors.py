@@ -1,45 +1,105 @@
-import matplotlib.image as img
+"""
+Credits: https://towardsdatascience.com/finding-most-common-colors-in-python-47ea0767a06a
+"""
+from collections import Counter
+import cv2 as cv
+import numpy as np
 import matplotlib.pyplot as plt
-from scipy.cluster.vq import whiten
-from scipy.cluster.vq import kmeans
-import pandas as pd
+import PIL
+from sklearn.cluster import KMeans
 
-batman_image = img.imread('../images/popeye.jpg')
 
-r = []
-g = []
-b = []
-for row in batman_image:
-    for temp_r, temp_g, temp_b in row:
-        r.append(temp_r)
-        g.append(temp_g)
-        b.append(temp_b)
+def show_img_compar(img_1, img_2):
+    f, ax = plt.subplots(1, 2, figsize=(10, 10))
+    ax[0].imshow(img_1)
+    ax[1].imshow(img_2)
+    ax[0].axis('off')  # hide the axis
+    ax[1].axis('off')
+    f.tight_layout()
+    plt.show()
 
-batman_df = pd.DataFrame({'red': r,
-                          'green': g,
-                          'blue': b})
 
-batman_df['scaled_color_red'] = whiten(batman_df['red'])
-batman_df['scaled_color_blue'] = whiten(batman_df['blue'])
-batman_df['scaled_color_green'] = whiten(batman_df['green'])
+def palette(clusters):
+    """
+    Shows color palette without percentage of each color
+    """
+    width = 300
+    palette = np.zeros((50, width, 3), np.uint8)
+    steps = width/clusters.cluster_centers_.shape[0]
+    for idx, centers in enumerate(clusters.cluster_centers_):
+        palette[:, int(idx*steps):(int((idx+1)*steps)), :] = centers
+    return palette
 
-cluster_centers, _ = kmeans(batman_df[['scaled_color_red',
-                                       'scaled_color_blue',
-                                       'scaled_color_green']], 3)
 
-dominant_colors = []
+# clt_1 = clt.fit(img.reshape(-1, 3))
+# show_img_compar(img, palette(clt_1))
 
-red_std, green_std, blue_std = batman_df[['red',
-                                          'green',
-                                          'blue']].std()
+# ------------------------------------------------------
 
-for cluster_center in cluster_centers:
-    red_scaled, green_scaled, blue_scaled = cluster_center
-    dominant_colors.append((
-        red_scaled * red_std / 255,
-        green_scaled * green_std / 255,
-        blue_scaled * blue_std / 255
-    ))
 
-plt.imshow([dominant_colors])
-plt.show()
+def palette_perc(k_cluster):
+    """
+    Shows color palette and percentage of each color
+    """
+    width = 300
+    palette = np.zeros((50, width, 3), np.uint8)
+
+    n_pixels = len(k_cluster.labels_)
+    counter = Counter(k_cluster.labels_)  # count how many pixels per cluster
+    perc = {}
+    for i in counter:
+        perc[i] = np.round(counter[i]/n_pixels, 2)
+    perc = dict(sorted(perc.items()))
+
+    step = 0
+
+    for idx, centers in enumerate(k_cluster.cluster_centers_):
+        palette[:, step:int(step + perc[idx]*width+1), :] = centers
+        step += int(perc[idx]*width+1)
+
+    # print(palette.shape)
+    return palette
+
+
+def prominent_colors(url, n_colors):
+    img = cv.imread(url)
+    img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
+
+    dim = (500, 300)
+    img = cv.resize(img, dim, interpolation=cv.INTER_AREA)
+
+    clt = KMeans(n_clusters=n_colors)
+
+    k_cluster = clt.fit(img.reshape(-1, 3))
+
+    width = 300
+    # palette = np.zeros((50, width, 3), np.uint8)
+
+    n_pixels = len(k_cluster.labels_)
+    counter = Counter(k_cluster.labels_)  # count how many pixels per cluster
+    perc = {}
+    for i in counter:
+        perc[i] = np.round(counter[i]/n_pixels, 2)
+    perc = dict(sorted(perc.items()))
+
+    # for logging purposes
+    print(perc)
+    print(k_cluster.cluster_centers_)
+
+    # show_img_compar(img, palette_perc(k_cluster))
+    # show_img_compar(img, palette(k_cluster))
+
+    # sorting the colors by percent
+    result = []
+    count = 0
+    for i in perc:
+        percent = perc[i]
+        result.append((percent, (k_cluster.cluster_centers_[count])/255))
+        count += 1
+
+    result.sort(reverse=True)
+    print(result)
+    return result
+
+
+# prominent_colors("../images/popeye.jpg", 5)
