@@ -5,7 +5,8 @@ import matplotlib.image as image
 from skimage.draw import line
 import math
 import random
-from extract_main_colors import prominent_colors
+from extract_main_colors import prominent_colors, remove_color_from_image
+import colour
 
 random.seed(10)
 
@@ -29,31 +30,39 @@ def pixel_pos_to_pixel_dist(input_positions, img, input_color):
     ys = input_positions[0]
     xs = input_positions[1]
     result = []
+    vals = []
+
+    # img = remove_color_from_image(img, input_color, threshold)
 
     # img = image.imread(url)
     for y, x in zip(ys, xs):
         val = img[y][x]
+        vals.append(val)
         # img[y][x] = np.array([255, 255, 255])
         # Converting rgb color to grayscale
         # grayscale_val = (np.dot(val, [0.2989, 0.5870, 0.1140]))
-        dist = np.sqrt(np.power(val[0] - input_color[0], 2) +
-                       np.power(val[1] - input_color[1], 2) +
-                       np.power(val[2] - input_color[2], 2))
-        result.append(dist)
+        # dist = colour.delta_E(val, input_color)
+        # dist = np.sqrt(np.power(val[0] - input_color[0], 2) +
+        #                np.power(val[1] - input_color[1], 2) +
+        #                np.power(val[2] - input_color[2], 2))
+        # result.append(dist)
+    input_colors = [input_color] * len(xs)
+    dist = colour.delta_E(vals, input_colors)
+    # print("dist:", np.mean(dist))
     # return img, result
-    return np.mean(result)
+    return np.mean(dist)
 
 
-def pixel_pos_to_draw(input_positions, img):
+def pixel_pos_to_draw(input_positions, img, color):
     ys = input_positions[0]
     xs = input_positions[1]
 
     for y, x in zip(ys, xs):
-        img[y][x] = np.array([255, 255, 255])
+        img[y][x] = color
 
 
 class stringArt():
-    def __init__(self, url, n_nodes=100, n_strings=10, width=0.1):
+    def __init__(self, url, i, n_nodes=100, n_strings=10, width=0.1, threshold=100):
         self.nodes_y = []
         self.nodes_x = []
         self.string_attachments = []
@@ -62,7 +71,9 @@ class stringArt():
         self.n_nodes = n_nodes
         self.n_strings = n_strings
         self.width = width
+        self.threshold = threshold
         self.mean_darkness_list = []
+        self.i = i
 
     def create_nodes(self):
         img = image.imread(self.url)
@@ -87,6 +98,9 @@ class stringArt():
         # plt.show()
 
     def optimize_strings(self, test_color):
+        self.img = remove_color_from_image(
+            self.img, test_color, self.threshold)
+        inverse_color = 255 - test_color
         curr_node = random.randrange(0, self.n_nodes)
         self.string_attachments.append(curr_node)
         for i in range(self.n_strings):
@@ -105,8 +119,8 @@ class stringArt():
                     max_darkness_node = test_node
                     max_darkness_line = line_
             self.mean_darkness_list.append(max_darkness)
-            print(i, max_darkness)
-            pixel_pos_to_draw(max_darkness_line, self.img)
+            print(self.i, i)
+            pixel_pos_to_draw(max_darkness_line, self.img, inverse_color)
 
             self.string_attachments.append(max_darkness_node)
             curr_node = max_darkness_node
@@ -121,54 +135,71 @@ class stringArt():
             line_ = line(self.nodes_y[curr_node], self.nodes_x[curr_node],
                          self.nodes_y[target_node], self.nodes_x[target_node])
             plt.plot((line_[1][0], line_[1][-1]),
-                     (line_[0][0], line_[0][-1]), c=color, linewidth=self.width)
+                     (line_[0][0], line_[0][-1]), c=color/255, linewidth=self.width)
             # pixel_pos_to_draw(line_, image)
 
             curr_node = target_node
 
+        # --------------------------------------------------
+        # delete this part
+        # plt.imshow(self.img, alpha=1)
+        # plt.scatter(self.nodes_x, self.nodes_y, s=20)
+        # plt.figure()
+        # --------------------------------------------------
+
         plt.imshow(self.img, alpha=0)
-        plt.scatter(self.nodes_x, self.nodes_y, s=20)
-        plt.axis('equal')
-        # plt.savefig("../images/Figure_29.1.png")
+        # plt.scatter(self.nodes_x, self.nodes_y, s=20)
+        # plt.axis('equal')
+        # plt.savefig("../images/Figure_30.1.png")
         # plt.figure()
 
         # plt.imshow(self.img, alpha=1)
         # plt.scatter(self.nodes_x, self.nodes_y, s=20)
-        # plt.savefig("../images/Figure_29.2.png")
+        # plt.savefig("../images/Figure_30.2.png")
         # plt.figure()
 
         # plt.plot(self.mean_darkness_list)
-        # plt.savefig("../images/Figure_29.3.png")
+        # plt.savefig("../images/Figure_30.3.png")
         # plt.show()
 
 
-def main(url, n_nodes=350, n_strings=2500, width=0.035, n_colors=3):
+def main(url, n_nodes=350, n_strings=2500, width=0.035, n_colors=3, threshold=60):
     colors = prominent_colors(url, n_colors)
+    # colors = colors[1:]
+    # n_colors -= 1
+
     # plt.imshow(art.img, alpha=0)
     # plt.scatter(art.nodes_x, art.nodes_y, s=20)
     # plt.axis('equal')
-    for i in range(n_colors):
-        art = stringArt(url, n_nodes=n_nodes,
-                        n_strings=int(n_strings*colors[i][0]), width=width)
+    # art = stringArt(url, 1, n_nodes=n_nodes,
+    #                 n_strings=n_strings, width=width, threshold=threshold)
+
+    # Order is black, skin, blue
+    # Order is brown, skin, black
+    order = [0, 1, 2]
+    # n_strings = [1000, 1500, 2500]
+    # n_strings = [3, 1, 1]
+
+    # for idx, i in enumerate(order):
+    for idx, i in enumerate(reversed(range(n_colors))):
+        # i = 1
+        # art = stringArt(url, idx,  n_nodes=n_nodes,
+        #                 n_strings=int(n_strings*colors[n_colors-1-i][0]), width=width, threshold=threshold)
+        art = stringArt(url, idx,  n_nodes=n_nodes,
+                        n_strings=int(n_strings*colors[i][0]), width=width, threshold=threshold)
+        # art = stringArt(url, n_nodes=n_nodes,
+        #                 n_strings=n_strings, width=width, threshold=threshold)
+        # art = stringArt(url, idx, n_nodes=n_nodes,
+        #                 n_strings=n_strings[idx], width=width, threshold=threshold)
         art.create_nodes()
         art.optimize_strings(colors[i][1])
         art.draw_string_art(colors[i][1])
+        # break
+    plt.savefig(f"../../images/color_figure_39.png")
     plt.show()
 
 
 if __name__ == '__main__':
-    # art = stringArt("images/mona-lisa.jpg", n_nodes=300,
-    #                 n_strings=2500, width=0.1)
-    # art = stringArt("images/tiffany.jpg", n_nodes=250,
-    #                 n_strings=2500, width=0.1)
-    # art = stringArt("images/aysha_cropped.jpg",
-    # n_nodes=50, n_strings=1600, width=0.1)
-    # art = stringArt("images/popeye.jpg",
-    #                 n_nodes=350, n_strings=2500, width=0.035)
-    # art.create_nodes()
-    # art.optimize_strings()
-    # art.draw_string_art()
-    # print(art.shape)
-    # print(np.pi)
-    main("../images/popeye.jpg", n_nodes=150,
-         n_strings=1000, width=0.1, n_colors=3)
+    # prominent_colors("../images/tuta2_cropped.jpg", 5, show=True)
+    main("../images/tuta3_cropped.jpg", n_nodes=500,
+         n_strings=18000, width=0.03, n_colors=5, threshold=40)

@@ -6,7 +6,9 @@ import cv2 as cv
 import numpy as np
 import matplotlib.pyplot as plt
 import PIL
+from PIL import Image
 from sklearn.cluster import KMeans
+import colour
 
 
 def show_img_compar(img_1, img_2):
@@ -61,7 +63,7 @@ def palette_perc(k_cluster):
     return palette
 
 
-def prominent_colors(url, n_colors):
+def prominent_colors(url, n_colors, show=False):
     img = cv.imread(url)
     img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
 
@@ -86,7 +88,8 @@ def prominent_colors(url, n_colors):
     print(perc)
     print(k_cluster.cluster_centers_)
 
-    # show_img_compar(img, palette_perc(k_cluster))
+    if show == True:
+        show_img_compar(img, palette_perc(k_cluster))
     # show_img_compar(img, palette(k_cluster))
 
     # sorting the colors by percent
@@ -94,12 +97,27 @@ def prominent_colors(url, n_colors):
     count = 0
     for i in perc:
         percent = perc[i]
-        result.append((percent, (k_cluster.cluster_centers_[count])/255))
+        result.append((percent, (k_cluster.cluster_centers_[count])))
         count += 1
 
-    result.sort(reverse=True)
+    try:
+        result.sort(reverse=True)
+    except:
+        print("Warning: not sorted")
     print(result)
     return result
+
+
+def remove_color_from_image(img, input_color, threshold):
+    inverse_color = 255 - np.array(input_color)
+    input_colors = np.array(
+        Image.new('RGB', img.shape[:2][::-1], tuple([int(i) for i in input_color])))
+    dists = colour.delta_E(img, input_colors)
+    img[dists > threshold] = inverse_color
+
+    # plt.imshow(img)
+    # plt.show()
+    return img
 
 
 # prominent_colors("../images/popeye.jpg", 5)
