@@ -39,8 +39,18 @@ The replication takes in the following parameters: url, n_nodes, n_strings, and 
 - n_strings refers to the number of times the single thread of string will wrap around a nail (total sum for all nails on the canvas).
 - width refers to the width of the string that is used. The value is unitless as it sets the width of a line plotted using the Matplotlib Python Library, however, the width is very relevant in translating the computer generated sequence of attachments to a real canvas. The conversion between this value and the actual width of a string to be used is unknown.
 
-It starts by organizing n_nodes number of nodes uniformly in a circle. It provides each node with a set of coordinates that correspond to its location on the input image.
+It starts by organizing n_nodes number of nodes uniformly in a circle. It provides each node with a set of coordinates that correspond to its location on the input image. The algorithm chooses a random node to start with. Using that node, it checks the mean brightness value between it and every other node, then moves in the path of the darkest value. The pixels under that line are then converted to white so that this line is avoided in future iterations. This operation is repeated n_strings times.
 
+The color extension takes in the following parameters: url, n_nodes, n_strings, width, n_colors, and threshold. url, n_nodes, n_strings, and width have the same definition as the original implementation.
+
+- n_colors represents the number of string colors to use.
+- threshold represents the filtration threshold for the image to keep only the color of the string being optimized for. The meaning of the number will be explained later in more detail.
+
+The extension starts by deciding which colors to use for the strings. Using a K-Means clustering algorithm, it is able to identify the top n_colors prominent colors. It is also able to provide a relative percentage value for how dominant each color is so that their sum is 1.
+
+To judge the distance between two colors (the color of the string and the color of the pixel under it), we cannot use the pythagorean theorem. The reason being that our perception of color is not proportional to the distances resulting from the pythagorean theorem.
+
+<!-- "../images/aysha_cropped.jpg", n_nodes=500, n_strings=18000, width=0.03, n_colors=5, threshold=40 -->
 <!-- "images/popeye.jpg", n_nodes=350, n_strings=2500, width=0.035
 there are multiple extensions that can be explored in the process. The extension will be chosen depending on the difficulty of replication of the original algorithm. An idea for an extension on the easier end would be to see if changing the color of the thread would have an effect on feature retention on the image. An extension on the more difficult end would be to attempt to implement a similar algorithm, but allow it to run with multiple colors simultaneously. There are multiple ways of approaching the latter. The first is dividing the image into its three RGB channels, and running an independent string for all three colors and either run all three colors simultaneously or stack the three RGB thread images on top of each other. Another method is selecting the prominent colors in the image and layering them by prominence, with each color running on a channel filtered by the color. -->
 
