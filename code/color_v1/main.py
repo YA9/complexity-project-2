@@ -195,11 +195,14 @@ def main(url, n_nodes=350, n_strings=2500, width=0.035, n_colors=3, threshold=60
         art.optimize_strings(colors[i][1])
         art.draw_string_art(colors[i][1])
         # break
-    plt.savefig(f"../../images/color_figure_39.png")
+    plt.axis('off')
+    # fig.axes.get_xaxis().set_visible(False)
+    # fig.axes.get_yaxis().set_visible(False)
+    plt.savefig(f"../../images/color_figure_41.png",bbox_inches="tight", pad_inches=0)
     plt.show()
 
 
 if __name__ == '__main__':
-    # prominent_colors("../images/tuta2_cropped.jpg", 5, show=True)
-    main("../images/tuta3_cropped.jpg", n_nodes=500,
+    # prominent_colors("../images/tuta3_cropped.jpg", 5, brightness=0, show=True)
+    main("../images/aysha_cropped.jpg", n_nodes=500,
          n_strings=18000, width=0.03, n_colors=5, threshold=40)

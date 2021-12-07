@@ -63,7 +63,8 @@ def palette_perc(k_cluster):
     return palette
 
 
-def prominent_colors(url, n_colors, show=False):
+def prominent_colors(url, n_colors, brightness=0, contrast=0, show=False):
+    # brightness is a value between 0 and 1
     img = cv.imread(url)
     img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
 
@@ -97,13 +98,25 @@ def prominent_colors(url, n_colors, show=False):
     count = 0
     for i in perc:
         percent = perc[i]
-        result.append((percent, (k_cluster.cluster_centers_[count])))
+        color = k_cluster.cluster_centers_[count]
+        # ----- increasing brightness start -----
+        min_brightness_increase = 255
+        for rgb in color:
+            if min_brightness_increase > (255 - rgb):
+                min_brightness_increase = 255 - rgb
+        color += min_brightness_increase * brightness
+        # ----- increasing brightness end -----
+        # ----- increasing contrast start -----
+
+        # ----- increasing contrast end -----
+        result.append((percent, color))
         count += 1
 
-    try:
-        result.sort(reverse=True)
-    except:
-        print("Warning: not sorted")
+    result.sort(reverse=True, key=lambda element: (element[0], element[1][0]))
+    # try:
+    #     result.sort(reverse=True)
+    # except:
+    #     print("Warning: not sorted")
     print(result)
     return result
 
