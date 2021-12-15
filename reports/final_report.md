@@ -150,5 +150,7 @@ This paper examines the concept of recreating an image in the form of string art
 ## Sources
 
 http://zschuessler.github.io/DeltaE/learn/#:~:text=Delta%20E%20is%20a%20metric,range%20from%200%20to%20100
+
 https://mymodernmet.com/mou-aysha-humanitarian-photography/
+
 https://www.youtube.com/channel/UCqvXAiNyn8pd9SVPclWfJTg
