@@ -1,0 +1,108 @@
+complexity science project 2
+
+fig 1: "images/mona-lisa.jpg", n_nodes=300, n_strings=500, width = 0.1
+fig 2: "images/tiffany.jpg", n_nodes=50, n_strings=200, width = 0.1
+fig 3: "images/mona-lisa.jpg", n_nodes=300, n_strings=2500, width = 0.1
+fig 4: "images/mona-lisa.jpg", n_nodes=300, n_strings=3500, width=0.2
+fig 5: "images/mona-lisa.jpg", n_nodes=350, n_strings=2500, width=0.2
+fig 6: "images/mona-lisa.jpg", n_nodes=500, n_strings=3000, width=0.1
+fig 7: "images/tiffany.jpg", n_nodes=300, n_strings=2500, width=0.1
+fig 8: "images/rand_port_cropped_1.jpg", n_nodes=250, n_strings=2500, width=0.1
+fig 9: "images/rand_port_cropped_1.jpg", n_nodes=250, n_strings=1500, width=0.2
+fig 10: "images/rand_port_cropped_1.jpg", n_nodes=250, n_strings=1000, width=0.5
+fig 11: "images/rand_port_cropped_1.jpg", n_nodes=250, n_strings=800, width=0.4
+fig 12: "images/rand_port_cropped_1.jpg", n_nodes=250, n_strings=900, width=0.5
+fig 13: "images/rand_port_cropped_1.jpg", n_nodes=150, n_strings=900, width=0.3
+fig 14: "images/rand_port_cropped_1.jpg", n_nodes=100, n_strings=900, width=0.3
+fig 15: "images/rand_port_cropped_1.jpg", n_nodes=150, n_strings=500, width=0.2
+fig 16: "images/aysha_cropped.jpg", n_nodes=150, n_strings=1400, width=0.1
+fig 17: "images/aysha_cropped.jpg", n_nodes=150, n_strings=1600, width=0.1
+fig 18: "images/aysha_cropped.jpg", n_nodes=250, n_strings=1600, width=0.1
+fig 19: "images/aysha_cropped.jpg", n_nodes=75, n_strings=1600, width=0.1
+fig 20: "images/aysha_cropped.jpg", n_nodes=100, n_strings=1600, width=0.1
+fig 21: "images/aysha_cropped.jpg", n_nodes=125, n_strings=1600, width=0.1
+fig 22: "images/me1.jpg", n_nodes=150, n_strings=1600, width=0.15
+fig 23: "images/me1_crop.jpg", n_nodes=150, n_strings=1600, width=0.15
+fig 24: "images/me2.jpg", n_nodes=175, n_strings=1600, width=0.1
+fig 25: "images/me2.jpg", n_nodes=200, n_strings=1900, width=0.1
+fig 26: "images/popeye.jpg", n_nodes=250, n_strings=1900, width=0.1
+fig 27: "images/popeye.jpg", n_nodes=300, n_strings=2500, width=0.05
+fig 28: "images/popeye.jpg", n_nodes=350, n_strings=3500, width=0.02
+fig 29: "images/popeye.jpg", n_nodes=350, n_strings=3000, width=0.035
+fig 31: "images/aysha_cropped.jpg",
+                    n_nodes=300, n_strings=2200, width=0.1
+fig 32: "images/aysha_cropped.jpg",
+                    n_nodes=300, n_strings=1800, width=0.1
+fig 33: "images/popeye.jpg",
+                    n_nodes=350, n_strings=3000, width=0.04
+
+cfig 1: "../images/mona-lisa.jpg", n_nodes=300,
+         n_strings=2500, width=0.035, n_colors=3, threshold=80 - order = [2, 1, 0], n_strings = [2500, 2500, 2500]
+cfig 4: "../images/mona-lisa.jpg", n_nodes=300,
+         n_strings=3500, width=0.035, n_colors=3, threshold=100
+cfig 5: "../images/mona-lisa.jpg", n_nodes=300,
+         n_strings=3500, width=0.035, n_colors=8, threshold=100
+cfig 6: "../images/mona-lisa.jpg", n_nodes=300,
+         n_strings=3500, width=0.035, n_colors=2, threshold=100
+cfig 9: "../images/me2.jpg", n_nodes=300,
+         n_strings=7000, width=0.035, n_colors=3, threshold=60
+cfig 12: "../images/fam.jpg", n_nodes=400,
+         n_strings=20000, width=0.01, n_colors=7, threshold=60
+cfig 13: "../images/aysha_cropped.jpg", n_nodes=200,
+         n_strings=6000, width=0.03, n_colors=3, threshold=60
+cfig 14: "../images/aysha_cropped.jpg", n_nodes=200,
+         n_strings=6000, width=0.03, n_colors=3, threshold=100
+cfig 15: "../images/aysha_cropped.jpg", n_nodes=200,
+         n_strings=6000, width=0.03, n_colors=3, threshold=40
+cfig 16: "../images/aysha_cropped.jpg", n_nodes=300,
+         n_strings=9000, width=0.03, n_colors=3, threshold=40
+cfig 17: "../images/aysha_cropped.jpg", n_nodes=400,
+         n_strings=10000, width=0.02, n_colors=3, threshold=40
+cfig 18: "../images/aysha_cropped.jpg", n_nodes=400,
+         n_strings=10000, width=0.03, n_colors=3, threshold=40
+cfig 19: "../images/aysha_cropped.jpg", n_nodes=400,
+         n_strings=10000, width=0.03, n_colors=3, threshold=40 - the percentages of colors are reversed (n_colors-1-i and removed reversed from range)
+cfig 20: "../images/aysha_cropped.jpg", n_nodes=400,
+         n_strings=10000, width=0.03, n_colors=3, threshold=40 - the percentages of colors are reversed (n_colors-1-i)
+cfig 21: "../images/aysha_cropped.jpg", n_nodes=500,
+         n_strings=14000, width=0.02, n_colors=3, threshold=40
+cfig 22: "../images/aysha_cropped.jpg", n_nodes=500,
+         n_strings=16000, width=0.01, n_colors=3, threshold=40
+cfig 23: "../images/aysha_cropped.jpg", n_nodes=600,
+         n_strings=20000, width=0.01, n_colors=3, threshold=40
+cfig 24: "../images/aysha_cropped.jpg", n_nodes=500,
+         n_strings=14000, width=0.03, n_colors=3, threshold=40
+cfig 25: "../images/aysha_cropped.jpg", n_nodes=500,
+         n_strings=14000, width=0.03, n_colors=5, threshold=40
+cfig 26: "../images/aysha_cropped.jpg", n_nodes=500,
+         n_strings=18000, width=0.03, n_colors=5, threshold=40 - not sorted
+cfig 26.1: "../images/aysha_cropped.jpg", n_nodes=500,
+         n_strings=18000, width=0.03, n_colors=5, threshold=40 - not sorted
+cfig 27: "../images/aysha_cropped.jpg", n_nodes=500,
+         n_strings=18000, width=0.03, n_colors=5, threshold=20
+cfig 28: "../images/aysha_cropped.jpg", n_nodes=500,
+         n_strings=15000, width=0.03, n_colors=5, threshold=30
+cfig 29: "../images/aysha_cropped.jpg", n_nodes=500,
+         n_strings=15000, width=0.03, n_colors=5, threshold=40
+cfig 30: "../images/aysha_cropped.jpg", n_nodes=500,
+         n_strings=22000, width=0.03, n_colors=8, threshold=40
+cfig 31: "../images/freeman1_cropped.jpg", n_nodes=500,
+         n_strings=18000, width=0.03, n_colors=5, threshold=40
+cfig 32: "../images/freeman1_cropped.jpg", n_nodes=500,
+         n_strings=12000, width=0.03, n_colors=5, threshold=50
+cfig 33: "../images/tuta1_cropped.jpg", n_nodes=500,
+         n_strings=12000, width=0.03, n_colors=5, threshold=40
+cfig 34: "../images/simsim2_cropped.jpg", n_nodes=500,
+         n_strings=12000, width=0.03, n_colors=5, threshold=40
+cfig 35: "../images/tuta1_cropped.jpg", n_nodes=500,
+         n_strings=12000, width=0.03, n_colors=5, threshold=40 - removed duplicate main color
+cfig 36: "../images/tuta2_cropped.jpg", n_nodes=250,
+         n_strings=18000, width=0.03, n_colors=5, threshold=40
+cfig 37: "../images/tuta3_cropped.jpg", n_nodes=250,
+         n_strings=18000, width=0.03, n_colors=5, threshold=40
+cfig 38: "../images/tuta3_cropped.jpg", n_nodes=500,
+         n_strings=18000, width=0.03, n_colors=5, threshold=40
+cfig 39: "../images/tuta3_cropped_contrast.jpg", n_nodes=500,
+         n_strings=18000, width=0.03, n_colors=5, threshold=40
+cfig 40: "../images/aysha_cropped.jpg", n_nodes=500,
+         n_strings=18000, width=0.03, n_colors=5, threshold=40 - sorted
