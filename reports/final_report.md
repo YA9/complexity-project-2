@@ -12,13 +12,15 @@ This paper will investigate algorithms that are used to form string art. String 
 ![Examples](../images/sample_art.PNG)
 Figure 1: an example representing images and their conversions to string art. [[1]](#link1)
 
-There are many ways to optimize the placement of the strings, however, the most common one that will likely be used in this paper is an iterative greedy algorithm. This method starts at a random pin and chooses the darkest path in the image to follow and places a string, then moves to the end of the string.
+This paper explore the extension of string art, which is normally done with only black string, into color. This has two benefits: the first benefit would be novelty and different aesthetic. The second is more retention of detail, at least in theory. Higher retention of detail would come from the fact that we can now overlay strings with different colors and hide their artifacts while simultaneously adding detail in that new color. Overall, the methods used in this paper to achieve colored string art were successful in retaining more information from the image than a replication of the reference paper.
 
-Although such an algorithm is fascinating and the outcome resembles the provided image, allowing the algorithm to process colored images into a set of usable colored strings would have multiple benefits. The first benefit would be novelty and different aesthetic. The second is more retention of detail, at least in theory. Higher retention of detail would come from the fact that we can now overlay strings with different colors and hide their artifacts while simultaneously adding detail in that new color. There would be multiple ways to implement this idea which will be discussed in this paper, however, only one will be implemented and thoroughly examined.
+<!-- There are many ways to optimize the placement of the strings, however, the most common one that will likely be used in this paper is an iterative greedy algorithm. This method starts at a random pin and chooses the darkest path in the image to follow and places a string, then moves to the end of the string.
 
-The approach to recreating the original implementation should be fairly straight-forward. However, there are multiple challenges that arise from attempting a color implementation. They can be summarized into selecting the colors for the string(s), deciding how a greedy algorithm can be modified to work in a color image, and how the loss function will work. These modifications increase the complexity of the algorithm; there will be more parameters, and parameter tuning may become more crucial in attaining desirable results.
+Although such an algorithm is fascinating and the outcome resembles the provided image, allowing the algorithm to process colored images into a set of usable colored strings would have multiple benefits. The first benefit would be novelty and different aesthetic. The second is more retention of detail, at least in theory. Higher retention of detail would come from the fact that we can now overlay strings with different colors and hide their artifacts while simultaneously adding detail in that new color. There would be multiple ways to implement this idea which will be discussed in this paper, however, only one will be implemented and thoroughly examined. -->
 
-The outcome of the extension was successful (qualitatively judging) in transferring more information from the image to the art piece. It appears that the image has more depth and is separated into layers, each containing a different prominent color. At first glance, it is much easier to connect the resulting image to the original than the black and white version. However, the benefits do come with their vices in this case. There are some images where it is difficult for there to be a separation of colors using strings. An example of this is spots or any complex pattern. It seems to work best if the image appears to be divided into colors that are layered on top of each other.
+<!-- The approach to recreating the original implementation should be fairly straight-forward. However, there are multiple challenges that arise from attempting a color implementation. They can be summarized into selecting the colors for the string(s), deciding how a greedy algorithm can be modified to work in a color image, and how the loss function will work. These modifications increase the complexity of the algorithm; there will be more parameters, and parameter tuning may become more crucial in attaining desirable results.
+
+The outcome of the extension was successful (qualitatively judging) in transferring more information from the image to the art piece. It appears that the image has more depth and is separated into layers, each containing a different prominent color. At first glance, it is much easier to connect the resulting image to the original than the black and white version. However, the benefits do come with their vices in this case. There are some images where it is difficult for there to be a separation of colors using strings. An example of this is spots or any complex pattern. It seems to work best if the image appears to be divided into colors that are layered on top of each other. -->
 
 ## Experiment
 
@@ -73,7 +75,7 @@ A problem that arose from having multiple colors was how to distribute the numbe
 For a comparison to the original paper, an image of Popeye is run through the replication algorithm.
 
 <p float="center">
-  <img src="./images/popeye_gf1.1.png" width="300px"/>
+  <img src="./images/popeye_gf1.1.png" width="42%"/>
 </p>
 
 Figure 5: n_nodes=350, n_strings=3000, width=0.04
@@ -85,8 +87,8 @@ The image appears to resemble Popeye. The resemblance is not as strong as the co
 The following is a comparison of an image of Aysha run through the replication algorithm and an the same image run through the color algorithm.
 
 <p float="center">
-  <img src="./images/aysha_gf1.1.png" width="300px" />
-  <img src="./images/aysha_color.png" width="300px" />
+  <img src="./images/aysha_gf1.1.png" width="42%" />
+  <img src="./images/aysha_color.png" width="42%" />
 </p>
 Figure 6 (left): n_nodes=300, n_strings=1800, width=0.1
 
