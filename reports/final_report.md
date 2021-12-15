@@ -149,6 +149,8 @@ This paper examines the concept of recreating an image in the form of string art
 
 ## Sources
 
+https://towardsdatascience.com/finding-most-common-colors-in-python-47ea0767a06a
+
 http://zschuessler.github.io/DeltaE/learn/#:~:text=Delta%20E%20is%20a%20metric,range%20from%200%20to%20100
 
 https://mymodernmet.com/mou-aysha-humanitarian-photography/
