@@ -48,14 +48,22 @@ To judge the distance between two colors (the color of the string and the color 
 
 The following is a sample image that will be used throughout the rest of the paper.
 
-![grid distance](./images/aysha_cropped.jpg)
+<p float="center">
+  <img src="./images/aysha_cropped.jpg" width="300px" />
+</p>
+
 Figure 2: sample input image (Aysha)
-<br></br>
+
+<!-- <br></br> -->
+
 If this image were to be used with the color algorithm, the following would be the output for the prominent colors of the image.
 
 ![grid distance](./images/prominent_colors.png)
+
 Figure 3: prominent colors of figure 1. Percent breakdown: green=0.4, black=0.44, and tan=0.15
-<br></br>
+
+<!-- <br></br> -->
+
 These colors are then used to form the three images that the algorithm will run on.
 
 <p float="center">
@@ -75,7 +83,7 @@ A problem that arose from having multiple colors was how to distribute the numbe
 For a comparison to the original paper, an image of Popeye is run through the replication algorithm.
 
 <p float="center">
-  <img src="./images/popeye_gf1.1.png" width="42%"/>
+  <img src="./images/popeye_gf1.1.png" width="300px"/>
 </p>
 
 Figure 5: n_nodes=350, n_strings=3000, width=0.04
@@ -87,8 +95,8 @@ The image appears to resemble Popeye. The resemblance is not as strong as the co
 The following is a comparison of an image of Aysha run through the replication algorithm and an the same image run through the color algorithm.
 
 <p float="center">
-  <img src="./images/aysha_gf1.1.png" width="42%" />
-  <img src="./images/aysha_color.png" width="42%" />
+  <img src="./images/aysha_gf1.1.png" width="300px" />
+  <img src="./images/aysha_color.png" width="300px" />
 </p>
 Figure 6 (left): n_nodes=300, n_strings=1800, width=0.1
 
