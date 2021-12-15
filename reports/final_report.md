@@ -12,7 +12,7 @@ This paper will investigate algorithms that are used to form string art. String 
 ![Examples](../images/sample_art.PNG)
 Figure 1: an example representing images and their conversions to string art. [[1]](#link1)
 
-This paper explore the extension of string art, which is normally done with only black string, into color. This has two benefits: the first benefit would be novelty and different aesthetic. The second is more retention of detail, at least in theory. Higher retention of detail would come from the fact that we can now overlay strings with different colors and hide their artifacts while simultaneously adding detail in that new color. Overall, the methods used in this paper to achieve colored string art were successful in retaining more information from the image than a replication of the reference paper.
+This paper explores the extension of string art, which is normally done with only black string, into color. This has two benefits: the first benefit would be novelty and a different aesthetic. The second is more retention of detail, at least in theory. Higher retention of detail would come from the fact that we can now overlay strings with different colors and hide their artifacts while simultaneously adding detail in that new color. Overall, the methods used in this paper to achieve colored string art were successful in retaining more information from the image than a replication of the reference paper.
 
 <!-- There are many ways to optimize the placement of the strings, however, the most common one that will likely be used in this paper is an iterative greedy algorithm. This method starts at a random pin and chooses the darkest path in the image to follow and places a string, then moves to the end of the string.
 
@@ -92,7 +92,7 @@ The image appears to resemble Popeye. The resemblance is not as strong as the co
 
 <!-- <br></br> -->
 
-The following is a comparison of an image of Aysha run through the replication algorithm and an the same image run through the color algorithm.
+The following is a comparison of an image of Aysha run through the replication algorithm and the same image run through the color algorithm.
 
 <p float="center">
   <img src="./images/aysha_gf1.1.png" width="300px" />
@@ -104,7 +104,7 @@ Figure 7 (right): n_nodes=500, n_strings=18000, width=0.03, n_colors=5, threshol
 
 <!-- <br></br> -->
 
-It is (subjectively) noticeable that much more detail is preserved in the replication algorithm. However, there is a more objective metric that can be used to measure the distances between color images. the delta_E function from the Python colour library can also analyze distances between images. The following are the results: The Delta E between the the inputted Aysha image and the replication is 45.31, whereas the Delta E between the input image and the color extension is 26.68. There is a clear objective distinction between the quality of the images.
+It is (subjectively) noticeable that much more detail is preserved in the replication algorithm. However, there is a more objective metric that can be used to measure the distances between color images. The delta_E function from the Python colour library can also analyze distances between images. The following are the results: The Delta E between the inputted Aysha image and the replication is 45.31, whereas the Delta E between the input image and the color extension is 26.68. There is a clear objective distinction between the quality of the images.
 
 <!-- <br></br> -->
 
@@ -119,7 +119,7 @@ Figure 8: n_nodes=300, n_strings=1800, width=0.1
 
 <!-- <br></br> -->
 
-It is noticeable that most of the dark spots in the Popeye image are gone, meaning that the replication algorithm did a decent job in extracting information from the image. The plot on the right in figure 7 represents the average distance between the black line and the line of the path it will be taking over the string iterations. This method is very useful in analyzing when it is a good time to stop adding more strings.
+It is noticeable that most of the dark spots in the Popeye image are gone, meaning that the replication algorithm did a decent job in extracting information from the image. The plot on the right in figure 7 represents the average distance between the black line and the line of the path it will be taking over the string iterations. This method is useful in analyzing when it is a good time to stop adding more strings.
 
 ## Causes for Concern
 
