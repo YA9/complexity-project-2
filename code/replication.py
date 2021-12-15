@@ -130,19 +130,24 @@ class stringArt():
             curr_node = target_node
 
         plt.imshow(self.img, alpha=0)
-        plt.scatter(self.nodes_x, self.nodes_y, s=20)
-        plt.axis('equal')
-        plt.savefig("../images/Figure_29.1.png")
+        # plt.scatter(self.nodes_x, self.nodes_y, s=20)
+        # plt.axis('equal')
+        plt.axis('off')
+        plt.savefig("../images/Figure_33.1.png", bbox_inches="tight", pad_inches=0)
         plt.figure()
 
         # plt.plot(image)
         plt.imshow(self.img, alpha=1)
-        plt.scatter(self.nodes_x, self.nodes_y, s=20)
-        plt.savefig("../images/Figure_29.2.png")
+        plt.axis('off')
+        # plt.scatter(self.nodes_x, self.nodes_y, s=20)
+        plt.savefig("../images/Figure_33.2.png", bbox_inches="tight", pad_inches=0)
         plt.figure()
 
         plt.plot(self.mean_darkness_list)
-        plt.savefig("../images/Figure_29.3.png")
+        plt.xlabel('Iteration')
+        plt.ylabel('Euclidean Distance')
+        plt.title('Average Color Distance Over Time')
+        plt.savefig("../images/Figure_33.3.png")
         plt.show()
 
 
@@ -154,7 +159,7 @@ if __name__ == '__main__':
     # art = stringArt("images/aysha_cropped.jpg",
     # n_nodes=50, n_strings=1600, width=0.1)
     art = stringArt("images/popeye.jpg",
-                    n_nodes=350, n_strings=2500, width=0.035)
+                    n_nodes=350, n_strings=3000, width=0.04)
     art.create_nodes()
     art.optimize_strings()
     art.draw_string_art()

@@ -48,7 +48,7 @@ The color extension takes in the following parameters: url, n_nodes, n_strings, 
 
 The extension starts by deciding which colors to use for the strings. Using a K-Means clustering algorithm, it is able to identify the top n_colors prominent colors. It is also able to provide a relative percentage value for how dominant each color is so that their sum is 1.
 
-To judge the distance between two colors (the color of the string and the color of the pixel under it), we cannot use the pythagorean theorem. The reason being that our perception of color is not proportional to the distances resulting from the pythagorean theorem.
+To judge the distance between two colors (the color of the string and the color of the pixel under it), we cannot use the pythagorean theorem. The reason being that our perception of color is not proportional to the distances resulting from the pythagorean theorem. There is another metric called the Delta E that is commonly used to understand how the human eye perceives color difference. This is the metric that will be used to optimize the strings and to compare the final result to the original image. Another issue arises with how we match multiple colors to a single image; if one image is used, then it will be modified after the first colored string is
 
 <!-- "../images/aysha_cropped.jpg", n_nodes=500, n_strings=18000, width=0.03, n_colors=5, threshold=40 -->
 <!-- "images/popeye.jpg", n_nodes=350, n_strings=2500, width=0.035
@@ -74,3 +74,5 @@ The next step is figuring out a way to quantitatively measure the distance betwe
 
 Notes:
 extension randomize or different nail pattern
+http://zschuessler.github.io/DeltaE/learn/#:~:text=Delta%20E%20is%20a%20metric,range%20from%200%20to%20100.
+talk about ordering of the colors and percentages of each

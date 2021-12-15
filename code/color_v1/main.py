@@ -144,6 +144,8 @@ class stringArt():
         # delete this part
         # plt.imshow(self.img, alpha=1)
         # plt.scatter(self.nodes_x, self.nodes_y, s=20)
+        # plt.axis('off')
+        # plt.savefig(f"../../reports/images/aysha_cf{self.i}1.png", bbox_inches="tight", pad_inches=0)
         # plt.figure()
         # --------------------------------------------------
 
@@ -198,7 +200,7 @@ def main(url, n_nodes=350, n_strings=2500, width=0.035, n_colors=3, threshold=60
     plt.axis('off')
     # fig.axes.get_xaxis().set_visible(False)
     # fig.axes.get_yaxis().set_visible(False)
-    plt.savefig(f"../../images/color_figure_41.png",bbox_inches="tight", pad_inches=0)
+    plt.savefig(f"../../images/color_figure_42.png", bbox_inches="tight", pad_inches=0)
     plt.show()
 
 

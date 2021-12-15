@@ -46,4 +46,5 @@ def make_circle(img, str_img):
 # make_circle(img, 100)
 # plt.show()
 
-make_circle("../images/aysha_cropped.jpg", "../../images/color_figure_40.png")
+make_circle("../images/aysha_cropped.jpg", "../../reports/images/aysha_color.png")
+make_circle("../images/aysha_cropped.jpg", "../../reports/images/aysha_gf1.1.png")

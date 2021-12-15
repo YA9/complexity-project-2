@@ -91,6 +91,9 @@ def prominent_colors(url, n_colors, brightness=0, contrast=0, show=False):
 
     if show == True:
         show_img_compar(img, palette_perc(k_cluster))
+        # plt.imshow(palette_perc(k_cluster))
+        # plt.axis('off')
+        # plt.show()
     # show_img_compar(img, palette(k_cluster))
 
     # sorting the colors by percent
@@ -133,4 +136,4 @@ def remove_color_from_image(img, input_color, threshold):
     return img
 
 
-# prominent_colors("../images/popeye.jpg", 5)
+# prominent_colors("../images/aysha_cropped.jpg", 3, show=True)
